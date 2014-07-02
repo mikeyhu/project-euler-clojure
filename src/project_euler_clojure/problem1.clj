@@ -1,11 +1,18 @@
 (ns project-euler-clojure.problem1)
 
-(defn numbers-up-to [n] (take n (range)))
+; If we list all the natural numbers below 10 that are multiples of 3 or 5,
+; we get 3, 5, 6 and 9. The sum of these multiples is 23.
+; Find the sum of all the multiples of 3 or 5 below 1000.
+
+(defn multiple? [n c] (= (mod n c) 0))
 
 (defn multiples-of-3-5 [numbers]
-  (filter #(or (=(mod % 3) 0) (=(mod % 5) 0)) numbers)
+  (filter #(or (multiple? % 3) (multiple? % 5)) numbers)
 )
 
 (defn sum-of-multiples [n]
-  (reduce + (multiples-of-3-5 (numbers-up-to n)))
+  (reduce + (multiples-of-3-5 (range n)))
 )
+
+(= (sum-of-multiples 10  ) 23)
+(= (sum-of-multiples 1000) 233168)
