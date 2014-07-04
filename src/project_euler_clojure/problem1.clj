@@ -13,6 +13,3 @@
 (defn sum-of-multiples [n]
   (reduce + (multiples-of-3-5 (range n)))
 )
-
-(= (sum-of-multiples 10  ) 23)
-(= (sum-of-multiples 1000) 233168)
