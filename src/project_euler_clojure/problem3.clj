@@ -1,7 +1,6 @@
-(ns project-euler-clojure.problem3)
-
-;The prime factors of 13195 are 5, 7, 13 and 29.
-;What is the largest prime factor of the number 600851475143 ?
+(ns project-euler-clojure.problem3
+  (:require [clojure.math.numeric-tower :as math])
+)
 
 (defn divisible? [primes number-to-check]
   (not-any? #(= (mod number-to-check %) 0) primes)
@@ -18,7 +17,7 @@
 )
 
 (defn prime-factors [n]
-  (let [p (take-while (partial > (sqrt n)) (primes))]
-    (filter #(= (mod n %) 0) p)
+  (let [p (take-while (partial > (math/sqrt n)) (primes))]
+    (first (sort > (filter #(= (mod n %) 0) p)))
   )
 )
